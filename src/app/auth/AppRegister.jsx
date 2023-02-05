@@ -1,5 +1,7 @@
+import React from "react";
 import { useState } from "react";
 import { authService } from "../services/AuthService";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const AppRegister = () => {
   const [data, setData] = useState({
@@ -16,7 +18,13 @@ export const AppRegister = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!data.email || !data.password || !data.name) {
+    if(
+        !data.email || 
+        !data.password || 
+        !data.last_name || 
+        !data.first_name
+      )
+    {
       alert("One or more field is blank.");
       return;
     }
@@ -30,20 +38,20 @@ export const AppRegister = () => {
     <div>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="main" style={{color:"red"}}>
           <label>First Name</label>
           <input
-            firstName="first name"
+            name="first_name"
             type="text"
-            onChange={(e) => setData({ ...data, firstName: e.target.value })}
+            onChange={(e) => setData({ ...data, first_name: e.target.value })}
           />
         </div>
         <div>
           <label>Last Name </label>
           <input
-            lastName="last name"
+            name="last_name"
             type="text"
-            onChange={(e) => setData({ ...data, lastName: e.target.value })}
+            onChange={(e) => setData({ ...data, last_name: e.target.value })}
           />
         </div>
         <div>
@@ -60,6 +68,14 @@ export const AppRegister = () => {
             name="password"
             type="password"
             onChange={(e) => setData({ ...data, password: e.target.value })}
+          />
+        </div>
+        <div>
+          <label>Confirm Password</label>
+          <input
+            name="password_confirmation"
+            type="password"
+            onChange={(e) => setData({ ...data, password_confirmation: e.target.value })}
           />
         </div>
         <div>

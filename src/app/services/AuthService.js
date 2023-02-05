@@ -3,20 +3,28 @@ import ApiService from "./ApiService";
 class AuthService extends ApiService {
   async login(data) {
     const response = await this.client.post("/auth/login", data);
-    this.setLoginTokenAndredirectToAuthPage(response.data.access_token);
+
+    this.setLoginToken(response.data.authorization.token);
+    this.setUserId(response.data.user.id);
+
+    window.location.replace("/galleries");
 
     return response;
   }
 
   async logout() {
     await this.client.post("/auth/logout", {}, { headers: this.getHeaders() });
+
     window.localStorage.removeItem("loginToken");
+    window.localStorage.removeItem("userId");
+    
     window.location.replace("/login");
   }
 
   async register(data) {
     const response = await this.client.post("/auth/register", data);
-    this.setLoginTokenAndredirectToAuthPage(response.data.access_token);
+    this.setLoginTokenAndredirectToAuthPage(response.data.authorization.token);
+    this.setUserId(response.user.id);
 
     return response;
   }
@@ -27,11 +35,18 @@ class AuthService extends ApiService {
     };
   }
 
+  setLoginToken(token) {
+    window.localStorage.setItem("loginToken", token);
+  }
+
+  setUserId(userId) {
+    window.localStorage.setItem("userId", userId);
+  }
+
   setLoginTokenAndredirectToAuthPage(token) {
     window.localStorage.setItem("loginToken", token);
-    window.location.replace("/movies");
+    window.location.replace("/galleries");
   }
 }
 
 export const authService = new AuthService();
-
