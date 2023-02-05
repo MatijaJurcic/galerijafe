@@ -1,24 +1,29 @@
 import { Link } from "react-router-dom";
 
 export const NavBar = () => {
-    return (
-        <div className="container col-lgoffset-4 col-lg-8">
-        <header>
-            <nav>
-                {window.localStorage.getItem("loginToken") ? (
-                    <div>
-                        <Link to="/"> All Galleries</Link>
-                        <Link to="/add"> Create Gallery</Link>
-                        <Link to="/logout">Logout</Link>
-                    </div>
-                ) : (
-                    <div>
-                        <Link to="/login"> Login </Link>
-                        <Link to="/register"> Register</Link>
-                    </div>
-                )}
-            </nav>
-        </header>
-        </div>
-    )
-}
+  return (
+    <div>
+      <header>
+        <nav>
+          {window.localStorage.getItem("loginToken") ? (
+            <div class="alert alert-primary" role="alert">
+              <nav>
+                <Link to="/">All galleries</Link>{" "}
+                <Link to="/my-galleries">My galleries</Link>{" "}
+                <Link to="/create">Create new gallery</Link>{" "}
+                <Link to="/logout">Logout</Link>
+              </nav>
+            </div>
+          ) : (
+            <div class="alert alert-primary" role="alert">
+              <nav>
+                <Link to="/login"> Login </Link>
+                <Link to="/register"> Register</Link>
+              </nav>
+            </div>
+          )}
+        </nav>
+      </header>
+    </div>
+  );
+};

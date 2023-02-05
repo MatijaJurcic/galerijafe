@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { makeSelectGallery } from "../app/galleries/selectors";
-import { getSingleGallery } from "../app/galleries/slice";
-import { GalleryDetails } from "../components/GalleryDetails";
+import { makeSelectGallery } from "../store/galleries/selector";
+import { getSingleGallery } from "../store/galleries/slice";
+import { GalleryDetails } from "../components/GalleryDetail";
 
 export const Gallery = () => {
   const [index, setIndex] = useState(0);
@@ -29,7 +29,7 @@ export const Gallery = () => {
       <GalleryDetails
         gallery={gallery}
         user={gallery.user}
-        comments={gallery.comments}
+       comments={gallery.comments}
         handleSelect={selectHandler}
         index={index}
       />

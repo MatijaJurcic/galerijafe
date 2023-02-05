@@ -61,7 +61,7 @@ export const EditGalleryForm = ({
           Add another URL
         </button>
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit">Edit</button>
       </form>
     );
   };

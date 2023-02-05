@@ -20,27 +20,37 @@ export const AppLogin = () => {
     }
   };
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email address</label>
-          <input
-            name="email"
-            type="text"
-            onChange={(e) => setData({ ...data, email: e.target.value })}
-          />
+    <div className="App">
+      <div className="container">
+        <div className="row d-flex justify-content-center">
+          <div className="col-md-4">
+            <h1>Login</h1>
+            <form id="loginform" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Email address</label>
+                <input
+                  className="form-control"
+                  name="email"
+                  type="text"
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  className="form-control"
+                  name="password"
+                  type="password"
+                  onChange={(e) =>
+                    setData({ ...data, password: e.target.value })
+                  }
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            onChange={(e) => setData({ ...data, password: e.target.value })}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      </div>
     </div>
   );
 };
